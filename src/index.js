@@ -1,5 +1,3 @@
-import one from './modules/one'
-import two from './modules/two'
+import event from './modules/event'
 
-one()
-two()
+event(767)

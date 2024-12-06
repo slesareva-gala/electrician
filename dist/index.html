@@ -3,7 +3,7 @@
 
 <head>
 	<!-- PAGE TITLE -->
-	<title>Шаблон сайта электрика</title>
+	<title>Ваш электрик</title>
 
 	<!-- META-DATA -->
 	<meta charset="utf-8">
@@ -12,7 +12,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="author" content="Команда разработчиков collary.ru" />
 	<meta name="copyright" content="© collary.ru, дизайн и разработка, 2018" />
-	<link rel="icon" type="image/png" href="favicon.png" />
+	<link rel="icon" href="logo.ico" type="image/x-icon">
+
 
 	<!-- STYLESHEETS :: FONTS -->
 	<link
@@ -21,6 +22,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- STYLESHEETS :: TEMPLATE -->
 	<link href="css/style.css" rel="stylesheet">
+	<script src="./js/main.js" defer></script>
 </head>
 
 <body>
@@ -32,9 +34,9 @@
 		<a href="#callback" class="callback-btn fancyboxModal hidden-sm"><i class="fa fa-phone"></i> Заказать звонок</a>
 		<div class="push20"></div>
 		<ul>
-			<li><a href="#services">Цены на услуги</a></li>
-			<li><a href="#faq">Ответы на вопросы</a></li>
-			<li><a href="#contacts">Контакты</a></li>
+			<li><a href="#services" class="smooth-scroll">Цены на услуги</a></li>
+			<li><a href="#faq" class="smooth-scroll">Ответы на вопросы</a></li>
+			<li><a href="#contacts" class="smooth-scroll">Контакты</a></li>
 		</ul>
 	</div>
 	<div class="overlay"></div>
@@ -77,9 +79,9 @@
 					<!-- * * * * * * Top menu * * * * * * -->
 					<div class="top-menu visible-md-inline-block visible-lg-inline-block">
 						<ul>
-							<li><a href="#services">Цены на услуги</a></li>
-							<li><a href="#faq">Ответы на вопросы</a></li>
-							<li><a href="#contacts">Контакты</a></li>
+							<li><a href="#services" class="smooth-scroll">Цены на услуги</a></li>
+							<li><a href="#faq" class="smooth-scroll">Ответы на вопросы</a></li>
+							<li><a href="#contacts" class="smooth-scroll">Контакты</a></li>
 						</ul>
 					</div>
 					<div class="cleaner"></div>
@@ -619,28 +621,31 @@
 	<!-- * * * * * * Footer: end * * * * * * -->
 
 
-	<div class="modal-overlay"></div>
 	<!-- * * * * * * Callback modal block * * * * * * -->
-	<div class="modal-callback" id="callback">
-		<div class="modal-close">
-			<img src="images/close_icon_green.svg" alt="modal-close">
-		</div>
-		<div class="title-h2">Мы перезвоним через 5 минут!</div>
-		<br />
-		<div class="rf">
-			<form action="" name="form-callback">
-				<div class="form-group">
-					<input type="text" name="fio" class="form-control" placeholder="Ваше имя" />
-				</div>
+	<div class="modal-overlay">
+		<div class="modal-callback" id="callback">
+			<div class="modal-close">
+				<svg>
+					<use href="./images/sprite.svg#close"></use>
+				</svg>
+			</div>
+			<div class="title-h2">Мы перезвоним через 5 минут!</div>
+			<br />
+			<div class="rf">
+				<form action="" name="form-callback">
+					<div class="form-group">
+						<input type="text" name="fio" class="form-control" placeholder="Ваше имя" />
+					</div>
 
-				<div class="form-group">
-					<input type="text" name="tel" class="form-control tel required" placeholder="Телефон*" />
-				</div>
-				<p><span class="red">*</span> <span class="f12">- поля, обязательные для заполнения</span></p>
-				<div>
-					<input type="submit" class="button btn feedback" value="Отправить" />
-				</div>
-			</form>
+					<div class="form-group">
+						<input type="text" name="tel" class="form-control tel required" placeholder="Телефон*" />
+					</div>
+					<p><span class="red">*</span> <span class="f12">- поля, обязательные для заполнения</span></p>
+					<div>
+						<input type="submit" class="button btn feedback" value="Отправить" />
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 	<!-- * * * * * * Callback modal block: end * * * * * * -->
@@ -719,7 +724,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
+
 </body>
 
 </html>
