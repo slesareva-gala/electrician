@@ -3,14 +3,14 @@ import { modal, smoothScroll } from './helpers';
 
 const event = (maxMediaMobile) => {
     const app = document.body
-    const orderCallback = app.querySelector('.modal-overlay');
-    const orderCallbackContent = orderCallback.querySelector('.modal-callback');
     const mobileMenu = app.querySelector('.mobile-menu')
     const headerWrapper = app.querySelector('.header-wrapper')
+    const orderCallback = app.querySelector('.modal-overlay');
+    const orderCallbackContent = orderCallback.querySelector('.modal-callback');
 
     const clickList = {
         name: 'click',
-        '.callback-btn': (t) => {
+        '.order-call': (t) => {
             if (t.closest('.mobile-menu')) mobileMenu.classList.remove('open')
             modal({
                 modal: orderCallback,
@@ -43,7 +43,7 @@ const event = (maxMediaMobile) => {
                     modal: orderCallback,
                     modalContent: orderCallbackContent,
                     states: 'hide',
-                    time: window.innerWidth < 768 ? 0 : 300,
+                    time: window.innerWidth < maxMediaMobile + 1 ? 0 : 300,
                 })
             }
         },
