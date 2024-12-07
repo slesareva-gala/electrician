@@ -1,5 +1,5 @@
 import placeArrowUp from './modules/placeArrowUp'
-import event from './modules/event'
+import navigateDocument from './modules/navigateDocument'
 
-event(767)
+navigateDocument(767)
 placeArrowUp()

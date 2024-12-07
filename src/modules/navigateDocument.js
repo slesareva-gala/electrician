@@ -1,6 +1,6 @@
 import { modal, smoothScroll } from './helpers';
 
-const event = (maxMediaMobile) => {
+const navigateDocument = (maxMediaMobile) => {
     const mobileMenu = document.querySelector('.mobile-menu')
     const headerWrapper = document.querySelector('.header-wrapper')
     const orderCallback = document.querySelector('.modal-overlay');
@@ -61,4 +61,4 @@ const event = (maxMediaMobile) => {
         })
     });
 }
-export default event
+export default navigateDocument
