@@ -1,11 +1,9 @@
 import { modal, smoothScroll } from './helpers';
 
-
 const event = (maxMediaMobile) => {
-    const app = document.body
-    const mobileMenu = app.querySelector('.mobile-menu')
-    const headerWrapper = app.querySelector('.header-wrapper')
-    const orderCallback = app.querySelector('.modal-overlay');
+    const mobileMenu = document.querySelector('.mobile-menu')
+    const headerWrapper = document.querySelector('.header-wrapper')
+    const orderCallback = document.querySelector('.modal-overlay');
     const orderCallbackContent = orderCallback.querySelector('.modal-callback');
 
     const clickList = {
@@ -21,7 +19,10 @@ const event = (maxMediaMobile) => {
         },
         '.smooth-scroll': (t) => {
             if (t.closest('.mobile-menu')) mobileMenu.classList.remove('open')
-            smoothScroll(t.getAttribute("href"), 1 - headerWrapper.offsetHeight)
+            smoothScroll(t.getAttribute('href'), 1 - headerWrapper.offsetHeight)
+        },
+        '.up': () => {
+            smoothScroll('.main-wrapper')
         },
         '.mob-menu-btn': () => {
             mobileMenu.classList.add('open')
@@ -32,7 +33,6 @@ const event = (maxMediaMobile) => {
         '.overlay': () => {
             mobileMenu.classList.remove('open')
         },
-
     };
 
     const mousedownList = {
@@ -50,7 +50,7 @@ const event = (maxMediaMobile) => {
     };
 
     [clickList, mousedownList].forEach(o => {
-        app.addEventListener(o.name, (e) => {
+        document.addEventListener(o.name, (e) => {
             let elParent
             for (let key in o) {
                 if ((elParent = e.target.closest(key))) {

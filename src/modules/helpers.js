@@ -40,10 +40,12 @@ export const animate = ({ draw = () => { }, duration = 1000, timingplane = 'line
 };
 
 export const smoothScroll = (selectors, shift = 0, duration = 1000) => {
+  const targetElement = document.querySelector(selectors)
+
+  if (!targetElement) return
 
   const scrollY = window.scrollY;
-
-  const transitionHeight = document.querySelector(selectors).getBoundingClientRect().top + shift;
+  const transitionHeight = targetElement.getBoundingClientRect().top + shift;
 
   animate({
     duration: duration,
