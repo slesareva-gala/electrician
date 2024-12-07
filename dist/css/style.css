@@ -1154,17 +1154,14 @@ video#video_background {
 /* end top slider */
 
 /************************* accordeon **************************/
-.accordeon .element-content {
-    display: none;
-    padding: 20px;
-    font-size: 13px;
-    color: #888885;
-}
-
 .accordeon .element {
     margin-bottom: 6px;
     background: #fff;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.accordeon>div:last-of-type {
+    margin-bottom: 0;
 }
 
 .accordeon .element .title {
@@ -1177,15 +1174,13 @@ video#video_background {
     letter-spacing: 0.5px;
     position: relative;
     color: #888885;
-    -webkit-transition: all 200ms ease-out;
-    -moz-transition: all 200ms ease-out;
-    -o-transition: all 200ms ease-out;
-    transition: all 200ms ease-out;
+    -moz-transition: color .2s ease-out;
+    -o-transition: color .2s ease-out;
+    transition: color .2s ease-out;
 }
 
-.accordeon .element.active .title {
-    background: #e9bb26;
-    color: #fff !important;
+.accordeon .element .title:hover {
+    color: #333333;
 }
 
 .accordeon .element .title:before {
@@ -1201,30 +1196,46 @@ video#video_background {
     color: #fff;
     text-align: center;
     line-height: 50px;
-    -webkit-transition: all 200ms ease-out;
-    -moz-transition: all 200ms ease-out;
-    -o-transition: all 200ms ease-out;
-    transition: all 200ms ease-out;
-}
-
-.accordeon .element.active .title:before {
-    background: url(../images/minus.png) 50% 50% no-repeat #333;
-}
-
-.accordeon>div:first-of-type .element-content {
-    display: block;
+    -moz-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
 }
 
 .accordeon .element .title:hover:before {
     background-color: #333;
 }
 
-.accordeon .element .title:hover {
-    color: #333333;
+.accordeon .element-content {
+    display: block;
+    height: 0px;
+    padding: 0px 20px;
+    font-size: 13px;
+    color: #888885;
+    overflow: hidden;
+    transition: all .3s linear;
+    transition-property: height, padding-top, padding-bottom;
 }
 
-.accordeon>div:last-of-type {
-    margin-bottom: 0;
+.accordeon .element-content.notransition {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}
+
+.accordeon .element.active .title {
+    background: #e9bb26;
+    color: #fff !important;
+}
+
+.accordeon .element.active .title:before {
+    background: url(../images/minus.png) 50% 50% no-repeat #333;
+}
+
+.accordeon .element.active .element-content {
+    height: 300px;
+    max-height: fit-content;
+    padding: 20px;
 }
 
 /************************* end accordeon **************************/

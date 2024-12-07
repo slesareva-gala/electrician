@@ -40,7 +40,7 @@ export const animate = ({ draw = () => { }, duration = 1000, timingplane = 'line
 };
 
 export const smoothScroll = (selectors, shift = 0, duration = 1000) => {
-  const targetElement = document.querySelector(selectors)
+  const targetElement = (typeof selectors === 'string') ? document.querySelector(selectors) : selectors
 
   if (!targetElement) return
 
