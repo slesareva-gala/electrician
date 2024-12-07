@@ -2,13 +2,20 @@ import { modal, smoothScroll } from './helpers';
 
 const navigateDocument = (maxMediaMobile) => {
     const mobileMenu = document.querySelector('.mobile-menu')
-    const headerWrapper = document.querySelector('.header-wrapper')
     const orderCallback = document.querySelector('.modal-overlay');
-    const orderCallbackContent = orderCallback.querySelector('.modal-callback');
+    const orderCallbackContent = orderCallback ? orderCallback.querySelector('.modal-callback') : null;
+    const headerWrapper = document.querySelector('.header-wrapper')
 
     const clickList = {
         name: 'click',
-        '.order-call': (t) => {
+        '.up': () => {
+            smoothScroll('.main-wrapper')
+        }
+    }
+    const mousedownList = { name: 'mousedown' }
+
+    if (orderCallbackContent) {
+        clickList['.order-call'] = (t) => {
             if (t.closest('.mobile-menu')) mobileMenu.classList.remove('open')
             modal({
                 modal: orderCallback,
@@ -16,28 +23,8 @@ const navigateDocument = (maxMediaMobile) => {
                 states: 'show',
                 time: window.innerWidth < maxMediaMobile + 1 ? 0 : 1000,
             })
-        },
-        '.smooth-scroll': (t) => {
-            if (t.closest('.mobile-menu')) mobileMenu.classList.remove('open')
-            smoothScroll(t.getAttribute('href'), 1 - headerWrapper.offsetHeight)
-        },
-        '.up': () => {
-            smoothScroll('.main-wrapper')
-        },
-        '.mob-menu-btn': () => {
-            mobileMenu.classList.add('open')
-        },
-        '.mobile-menu-close': () => {
-            mobileMenu.classList.remove('open')
-        },
-        '.overlay': () => {
-            mobileMenu.classList.remove('open')
-        },
-    };
-
-    const mousedownList = {
-        name: 'mousedown',
-        '.modal-overlay': (t, p) => {
+        }
+        mousedownList['.modal-overlay'] = (t, p) => {
             if (t === p || t.closest('.modal-close')) {
                 modal({
                     modal: orderCallback,
@@ -46,13 +33,25 @@ const navigateDocument = (maxMediaMobile) => {
                     time: window.innerWidth < maxMediaMobile + 1 ? 0 : 300,
                 })
             }
-        },
-    };
+        }
+    }
+    if (headerWrapper) {
+        clickList['.smooth-scroll'] = (t) => {
+            if (t.closest('.mobile-menu')) mobileMenu.classList.remove('open')
+            smoothScroll(t.getAttribute('href'), 1 - headerWrapper.offsetHeight)
+        }
+    }
+    if (mobileMenu) {
+        clickList['.mob-menu-btn'] = () => { mobileMenu.classList.add('open') }
+        clickList['.mobile-menu-close'] = () => { mobileMenu.classList.remove('open') }
+        clickList['.overlay'] = () => { mobileMenu.classList.remove('open') }
+    }
 
     [clickList, mousedownList].forEach(o => {
         document.addEventListener(o.name, (e) => {
             let elParent
             for (let key in o) {
+                if (key === 'name') continue
                 if ((elParent = e.target.closest(key))) {
                     o[key](e.target, elParent)
                     break
