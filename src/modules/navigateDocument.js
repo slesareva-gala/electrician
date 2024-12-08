@@ -1,9 +1,19 @@
 import { modal, smoothScroll } from './helpers';
 
+
+export const replacingModal = (parent, newChild) => {
+    const currentChild = parent.firstElementChild
+
+    currentChild.style.display = ''
+    document.body.append(currentChild)
+    parent.append(newChild)
+    newChild.style.display = 'block'
+}
+
 const navigateDocument = (maxMediaMobile) => {
     const mobileMenu = document.querySelector('.mobile-menu')
-    const orderCallback = document.querySelector('.modal-overlay');
-    const orderCallbackContent = orderCallback ? orderCallback.querySelector('.modal-callback') : null;
+    const modalOverlay = document.querySelector('.modal-overlay')
+    const modalContentDefault = modalOverlay ? modalOverlay.querySelector('.modal-callback') : null;
     const headerWrapper = document.querySelector('.header-wrapper')
 
     const clickList = {
@@ -14,24 +24,29 @@ const navigateDocument = (maxMediaMobile) => {
     }
     const mousedownList = { name: 'mousedown' }
 
-    if (orderCallbackContent) {
+    if (modalContentDefault) {
         clickList['.fancyboxModal'] = (t) => {
             if (t.closest('.mobile-menu')) mobileMenu.classList.remove('open')
             modal({
-                modal: orderCallback,
-                modalContent: orderCallbackContent,
+                modal: modalOverlay,
+                modalContent: modalOverlay.firstElementChild,
                 states: 'show',
                 method: window.innerWidth < maxMediaMobile + 1 ? 'opacity' : 'translate',
                 time: window.innerWidth < maxMediaMobile + 1 ? 300 : 1000,
             })
         }
         mousedownList['.modal-overlay'] = (t, p) => {
-            if (t === p || t.closest('.modal-close')) {
+            if (t === p || t.closest('.modal-close') || t.closest('.fancyClose')) {
                 modal({
-                    modal: orderCallback,
-                    modalContent: orderCallbackContent,
+                    modal: modalOverlay,
+                    modalContent: modalOverlay.firstElementChild,
                     states: 'hide',
                     time: 300,
+                    postCallback: () => {
+                        if (modalOverlay.firstElementChild !== modalContentDefault) {
+                            replacingModal(modalOverlay, modalContentDefault)
+                        }
+                    }
                 })
             }
         }

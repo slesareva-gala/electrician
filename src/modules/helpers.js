@@ -1,11 +1,5 @@
 "use strict";
 
-export const dbload = (url) => fetch(url)
-  .then(response => {
-    if (!response.ok) throw new Error(response.statusText)
-    return response.json()
-  })
-
 export const animate = ({ draw = () => { }, duration = 1000, timingplane = 'linear', timeframe = 16.7, execute = () => true }) => {
 
   const timing = {
@@ -56,7 +50,7 @@ export const smoothScroll = (selectors, shift = 0, duration = 1000) => {
   });
 };
 
-export const modal = ({ modal, modalContent, states = 'show', method = 'translate', time = undefined }) => {
+export const modal = ({ modal, modalContent, states = 'show', method = 'translate', time = undefined, postCallback = null }) => {
 
   const actions = {
 
@@ -79,6 +73,7 @@ export const modal = ({ modal, modalContent, states = 'show', method = 'translat
               modalContent.style.left = `${100 - progress * 50}%`;
               modalContent.style.transform = `translateX( ${-50 * progress}% )`;
             } else modal.style.opacity = `${progress}`
+            if (progress === 1 && postCallback) postCallback()
           },
           duration: time
         });
@@ -99,6 +94,7 @@ export const modal = ({ modal, modalContent, states = 'show', method = 'translat
               modalContent.style.left = ``;
               modalContent.style.transform = ``;
               modal.style.transform = ''
+              if (postCallback) postCallback()
             } else modal.style.opacity = `${1 - progress}`;
           },
           duration: time
@@ -108,3 +104,4 @@ export const modal = ({ modal, modalContent, states = 'show', method = 'translat
   }
   if (modal && modalContent) actions[states](time)
 }
+

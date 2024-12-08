@@ -364,8 +364,21 @@ a.absolute {
     transition: width .3s;
 }
 
-#responseMessage .modal-content.error {
+#responseMessage {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20%;
+    border-radius: 5px;
+    transition: width .3s;
+}
+
+#responseMessage .modal-content {
     color: #2fab6d;
+}
+
+#responseMessage.error .modal-content {
+    color: #f02a29;
 }
 
 .box {
@@ -1491,4 +1504,117 @@ video#video_background {
 
 .up:hover {
     background-color: white;
+}
+
+#preloader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    display: none;
+    z-index: 1002;
+}
+
+#preloader #fountainG {
+    position: relative;
+    width: 234px;
+    height: 28px;
+    left: 50%;
+    top: 50%;
+    margin-left: -117px;
+    margin-top: -14px
+}
+
+#preloader .fountainG {
+    position: absolute;
+    top: 0;
+    background-color: #2fab6d;
+    width: 28px;
+    height: 28px;
+    animation-name: bounce_fountainG;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    transform: scale(.3);
+    border-radius: 19px;
+}
+
+#preloader #fountainG_1 {
+    left: 0;
+    animation-delay: .1s;
+}
+
+#preloader #fountainG_2 {
+    left: 29px;
+    animation-delay: .25s;
+}
+
+#preloader #fountainG_3 {
+    left: 58px;
+    animation-delay: .4s;
+}
+
+#preloader #fountainG_4 {
+    left: 88px;
+    animation-delay: .55s;
+}
+
+#preloader #fountainG_5 {
+    left: 117px;
+    animation-delay: .7s;
+}
+
+#preloader #fountainG_6 {
+    left: 146px;
+    animation-delay: .85s;
+}
+
+#preloader #fountainG_7 {
+    left: 175px;
+    animation-delay: 1s;
+}
+
+#preloader #fountainG_8 {
+    left: 205px;
+    animation-delay: 1.14s;
+}
+
+@keyframes bounce_fountainG {
+    0% {
+        transform: scale(1);
+        background-color: #2fab6d;
+    }
+
+    to {
+        transform: scale(.3);
+        background-color: wheat;
+    }
+}
+
+.no-valid {
+    position: relative;
+}
+
+.no-valid input {
+    box-shadow: inset 0 0 0 3px #f02a29;
+}
+
+.no-valid::after {
+    content: '!';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: unset;
+    right: 2.5rem;
+    top: calc(50% - 1.5rem);
+    width: 3rem;
+    height: 3rem;
+    font-size: 3rem;
+    line-height: 2rem;
+    border: 1px solid #f02a29;
+    border-radius: 50%;
+    color: #f02a29;
 }
