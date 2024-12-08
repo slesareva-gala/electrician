@@ -15,13 +15,14 @@ const navigateDocument = (maxMediaMobile) => {
     const mousedownList = { name: 'mousedown' }
 
     if (orderCallbackContent) {
-        clickList['.order-call'] = (t) => {
+        clickList['.fancyboxModal'] = (t) => {
             if (t.closest('.mobile-menu')) mobileMenu.classList.remove('open')
             modal({
                 modal: orderCallback,
                 modalContent: orderCallbackContent,
                 states: 'show',
-                time: window.innerWidth < maxMediaMobile + 1 ? 0 : 1000,
+                method: window.innerWidth < maxMediaMobile + 1 ? 'opacity' : 'translate',
+                time: window.innerWidth < maxMediaMobile + 1 ? 300 : 1000,
             })
         }
         mousedownList['.modal-overlay'] = (t, p) => {
@@ -30,7 +31,7 @@ const navigateDocument = (maxMediaMobile) => {
                     modal: orderCallback,
                     modalContent: orderCallbackContent,
                     states: 'hide',
-                    time: window.innerWidth < maxMediaMobile + 1 ? 0 : 300,
+                    time: 300,
                 })
             }
         }

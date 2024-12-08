@@ -1,5 +1,5 @@
 import Swiper from 'swiper'
-import { Autoplay, Pagination } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 const sliders = () => {
 
@@ -14,6 +14,17 @@ const sliders = () => {
             el: ".swiper-pagination",
         },
     });
+
+    new Swiper('.services-elements', {
+        modules: [Navigation],
+        slidesPerView: "auto",
+        loop: true,
+        navigation: {
+            nextEl: '.arrow-right',
+            prevEl: '.arrow-left',
+        },
+    });
+
 
     if (topSlider) topSlider.el.addEventListener('click', (e) => {
         if (e.target.closest('.swiper-pagination-bullet')) return

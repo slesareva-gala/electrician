@@ -56,24 +56,29 @@ export const smoothScroll = (selectors, shift = 0, duration = 1000) => {
   });
 };
 
-export const modal = ({ modal, modalContent, states = 'show', time = undefined }) => {
+export const modal = ({ modal, modalContent, states = 'show', method = 'translate', time = undefined }) => {
 
   const actions = {
 
     show: (time = 1000) => {
+      const mT = method === 'translate'
 
       modal.style.transform = 'translateX(0)'
-
-      if (time === 0) {
+      if (!mT || time === 0) {
         modalContent.style.left = `50%`;
         modalContent.style.transform = `translateX(-50% )`;
+      }
+      if (!mT && time === 0) modal.style.opacity = '1'
 
-      } else {
+      if (time) {
+
         animate({
-          timingplane: 'easeOutExpo',
+          timingplane: mT ? 'easeOutExpo' : 'linear',
           draw(progress) {
-            modalContent.style.left = `${100 - progress * 50}%`;
-            modalContent.style.transform = `translateX( ${-50 * progress}% )`;
+            if (mT) {
+              modalContent.style.left = `${100 - progress * 50}%`;
+              modalContent.style.transform = `translateX( ${-50 * progress}% )`;
+            } else modal.style.opacity = `${progress}`
           },
           duration: time
         });
