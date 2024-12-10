@@ -15,3 +15,6 @@
 ## Посмотреть на github:
 
 [демо](https://slesareva-gala.github.io/electrician/)
+
+_Содержимое папки /docs является копией папки /dist._
+_Папка /docs создана для просмотра результата._
